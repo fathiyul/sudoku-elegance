@@ -1,6 +1,12 @@
 import React from 'react';
 
-const Cell = ({ value, onChange, onSelect, isInitial, isSelected, disabled }) => {
+const Cell = ({ value, onChange, onSelect, isInitial, isSelected, isCorrect, disabled }) => {
+  const cellClass = `cell 
+    ${isInitial ? 'initial' : ''} 
+    ${isSelected ? 'selected' : ''} 
+    ${disabled ? 'disabled' : ''} 
+    ${!isInitial && value && !isCorrect ? 'incorrect' : ''}`;
+
   return (
     <input
       type="number"
@@ -10,7 +16,7 @@ const Cell = ({ value, onChange, onSelect, isInitial, isSelected, disabled }) =>
       onChange={(e) => onChange(e.target.value)}
       onClick={onSelect}
       readOnly={isInitial || disabled}
-      className={`cell ${isInitial ? 'initial' : ''} ${isSelected ? 'selected' : ''} ${disabled ? 'disabled' : ''}`}
+      className={cellClass}
     />
   );
 };

@@ -203,3 +203,12 @@ button:hover, select:hover {
   font-family: 'Playfair Display', serif;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
+
+.cell.incorrect {
+  background-color: #ffcccb;
+  color: #8b0000;
+}
+
+.cell.incorrect:focus {
+  background-color: #ffb3b3;
+}

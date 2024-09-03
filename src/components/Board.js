@@ -11,6 +11,7 @@ const Board = ({ board, onCellChange, onCellSelect, selectedCell, gameStatus }) 
               key={`${rowIndex}-${colIndex}`}
               value={cell.value}
               isInitial={cell.isInitial}
+              isCorrect={cell.isCorrect}
               isSelected={selectedCell && selectedCell.row === rowIndex && selectedCell.col === colIndex}
               onChange={(newValue) => onCellChange(rowIndex, colIndex, newValue)}
               onSelect={() => onCellSelect(rowIndex, colIndex)}

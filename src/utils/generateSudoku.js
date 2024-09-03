@@ -55,8 +55,9 @@ function generateSudoku() {
   
     return board.map(row => row.map(cell => ({
       value: cell === 0 ? '' : cell.toString(),
-      isInitial: cell !== 0
+      isInitial: cell !== 0,
+      isCorrect: true
     })));
-  }
+}
   
   export default generateSudoku;

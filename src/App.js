@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Board from './components/Board';
 import Controls from './components/Controls';
 import generateSudoku from './utils/generateSudoku';
-import isValidMove from './utils/isValidMove';
+import { isValidMove, checkBoardCompletion } from './utils/sudokuUtils';
 import './App.css';
 
 const App = () => {
@@ -27,7 +27,8 @@ const App = () => {
   }, [gameStatus]);
 
   const newGame = () => {
-    setBoard(generateSudoku(difficulty));
+    const newBoard = generateSudoku(difficulty);
+    setBoard(newBoard);
     setSelectedCell(null);
     setGameStatus('playing');
     setTimer(0);
@@ -37,25 +38,17 @@ const App = () => {
     if (board[row][col].isInitial || gameStatus !== 'playing') return;
     
     const newBoard = [...board];
-    if (newValue === '' || isValidMove(board, row, col, newValue)) {
-      newBoard[row][col] = { ...newBoard[row][col], value: newValue };
-      setBoard(newBoard);
-      checkCompletion(newBoard);
+    newBoard[row][col] = { ...newBoard[row][col], value: newValue, isCorrect: isValidMove(newBoard, row, col, newValue) };
+    setBoard(newBoard);
+
+    if (checkBoardCompletion(newBoard)) {
+      setGameStatus('completed');
     }
   };
 
   const handleCellSelect = (row, col) => {
     if (gameStatus === 'playing') {
       setSelectedCell({ row, col });
-    }
-  };
-
-  const checkCompletion = (currentBoard) => {
-    const isCompleted = currentBoard.every(row => 
-      row.every(cell => cell.value !== '' && cell.value !== '0')
-    );
-    if (isCompleted) {
-      setGameStatus('completed');
     }
   };
 
