@@ -1,20 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+body {
+  background-color: #f0e6d2;
+  font-family: 'Roboto', sans-serif;
+  color: #3c2f2f;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239C92AC' fill-opacity='0.05' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
 .App {
   text-align: center;
-  padding: 20px;
-  max-width: 800px;
+  padding: 40px;
+  max-width: 900px;
   margin: 0 auto;
+  background-color: #fff9e6;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.decorative-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header-ornament {
+  width: 100px;
+  height: 2px;
+  background-color: #8b4513;
+  position: relative;
+}
+
+.header-ornament::before,
+.header-ornament::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #8b4513;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.header-ornament.left::before {
+  left: 0;
+}
+
+.header-ornament.left::after {
+  right: 0;
+}
+
+.header-ornament.right::before {
+  left: 0;
+}
+
+.header-ornament.right::after {
+  right: 0;
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3em;
+  color: #8b4513;
+  margin: 0 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .game-container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 20px;
+  gap: 40px;
 }
 
 .board {
   display: inline-block;
-  border: 2px solid #333;
+  border: 3px solid #8b4513;
+  background-color: #fff;
+  box-shadow: 0 0 15px rgba(139, 69, 19, 0.2);
 }
 
 .board.paused::after {
@@ -23,11 +98,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  background-color: rgba(139, 69, 19, 0.9);
+  color: #fff9e6;
   padding: 20px;
   font-size: 24px;
   border-radius: 10px;
+  font-family: 'Playfair Display', serif;
 }
 
 .row {
@@ -35,77 +111,95 @@
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #999;
-  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  border: 1px solid #d2b48c;
+  font-size: 24px;
   text-align: center;
+  background-color: #fff9e6;
+  color: #3c2f2f;
+  transition: all 0.3s ease;
 }
 
 .cell:nth-child(3n) {
-  border-right: 2px solid #333;
+  border-right: 2px solid #8b4513;
 }
 
 .row:nth-child(3n) .cell {
-  border-bottom: 2px solid #333;
+  border-bottom: 2px solid #8b4513;
 }
 
 .initial {
-  background-color: #eee;
+  background-color: #f0e6d2;
   font-weight: bold;
+  color: #8b4513;
 }
 
 .selected {
-  background-color: #e6f3ff;
+  background-color: #ffe4b5;
 }
 
 .disabled {
-  background-color: #f0f0f0;
-  color: #999;
+  background-color: #f0e6d2;
+  color: #a9a9a9;
 }
 
 .controls {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 15px;
-  width: 200px;
+  gap: 20px;
+  width: 220px;
+  padding: 20px;
+  background-color: #f0e6d2;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(139, 69, 19, 0.2);
 }
 
 button, select {
-  padding: 10px;
+  padding: 12px;
   font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
+  font-family: 'Roboto', sans-serif;
+  background-color: #8b4513;
+  color: #fff9e6;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 button:hover, select:hover {
-  background-color: #45a049;
+  background-color: #a0522d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .timer {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
+  color: #8b4513;
+  font-family: 'Playfair Display', serif;
 }
 
 .difficulty-selector {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 5px;
+  gap: 8px;
 }
 
 .difficulty-selector label {
   text-align: left;
+  font-weight: bold;
+  color: #8b4513;
 }
 
 .completion-message {
   margin-top: 20px;
-  font-size: 18px;
-  color: #4CAF50;
+  font-size: 20px;
+  color: #8b4513;
   font-weight: bold;
+  font-family: 'Playfair Display', serif;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }

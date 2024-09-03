@@ -8,7 +8,7 @@ import './App.css';
 const App = () => {
   const [board, setBoard] = useState([]);
   const [selectedCell, setSelectedCell] = useState(null);
-  const [gameStatus, setGameStatus] = useState('playing'); // 'playing', 'paused', 'completed'
+  const [gameStatus, setGameStatus] = useState('playing');
   const [difficulty, setDifficulty] = useState('medium');
   const [timer, setTimer] = useState(0);
 
@@ -70,7 +70,11 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Sudoku</h1>
+      <div className="decorative-header">
+        <div className="header-ornament left"></div>
+        <h1>Sudoku</h1>
+        <div className="header-ornament right"></div>
+      </div>
       <div className="game-container">
         <Board 
           board={board} 
