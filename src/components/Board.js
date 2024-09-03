@@ -1,7 +1,7 @@
 import React from 'react';
 import Cell from './Cell';
 
-const Board = ({ board, onCellChange }) => {
+const Board = ({ board, onCellChange, onCellSelect, selectedCell }) => {
   return (
     <div className="board">
       {board.map((row, rowIndex) => (
@@ -11,7 +11,9 @@ const Board = ({ board, onCellChange }) => {
               key={`${rowIndex}-${colIndex}`}
               value={cell.value}
               isInitial={cell.isInitial}
+              isSelected={selectedCell && selectedCell.row === rowIndex && selectedCell.col === colIndex}
               onChange={(newValue) => onCellChange(rowIndex, colIndex, newValue)}
+              onSelect={() => onCellSelect(rowIndex, colIndex)}
             />
           ))}
         </div>
