@@ -1,20 +1,33 @@
 .App {
   text-align: center;
   padding: 20px;
-  max-width: 500px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
 .game-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .board {
   display: inline-block;
   border: 2px solid #333;
-  margin-bottom: 20px;
+}
+
+.board.paused::after {
+  content: "PAUSED";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  font-size: 24px;
+  border-radius: 10px;
 }
 
 .row {
@@ -46,14 +59,21 @@
   background-color: #e6f3ff;
 }
 
-.game-controls {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+.disabled {
+  background-color: #f0f0f0;
+  color: #999;
 }
 
-button {
-  padding: 10px 20px;
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 15px;
+  width: 200px;
+}
+
+button, select {
+  padding: 10px;
   font-size: 16px;
   background-color: #4CAF50;
   color: white;
@@ -63,6 +83,29 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+button:hover, select:hover {
   background-color: #45a049;
+}
+
+.timer {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.difficulty-selector {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 5px;
+}
+
+.difficulty-selector label {
+  text-align: left;
+}
+
+.completion-message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #4CAF50;
+  font-weight: bold;
 }
