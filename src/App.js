@@ -65,7 +65,7 @@ const App = () => {
     <div className="App">
       <div className="decorative-header">
         <div className="header-ornament left"></div>
-        <h1>Sudoku</h1>
+        <h1>Sudoku Elegance</h1>
         <div className="header-ornament right"></div>
       </div>
       <div className="game-container">
